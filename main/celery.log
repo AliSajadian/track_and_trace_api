@@ -1,0 +1,8 @@
+
+[2023-10-09 13:34:29,786: INFO/MainProcess] mingle: searching for neighbors
+[2023-10-09 13:34:30,802: INFO/MainProcess] mingle: all alone
+[2023-10-09 13:34:30,827: INFO/MainProcess] celery@ubuntu ready.
+[2023-10-10 05:33:51,392: INFO/MainProcess] Connected to redis://127.0.0.1:6379//
+[2023-10-10 05:33:51,419: INFO/MainProcess] mingle: searching for neighbors
+[2023-10-10 05:33:52,568: INFO/MainProcess] mingle: all alone
+[2023-10-10 05:33:52,656: INFO/MainProcess] celery@ubuntu ready.
