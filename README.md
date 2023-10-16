@@ -5,13 +5,13 @@ A web application using Django REST framework is a service of track and trace ar
 The Track and Trace app provides API for getting information about articles and shipments along with corresponding weather information. 
 
 This app has the following features:
+(for getting actual weather data the Weather app uses OpenWeather api service https://openweathermap.org/api)
 
 - users can create/read/update/delete customers via rest api
 - users can create/read/update/delete shops via rest api
 - users can create/read/update/delete Carriers via rest api
 - users can create/read/update/delete Articles via rest api
 - users can create/read/update/delete shipments via rest api
- (for getting actual weather data the Weather app uses OpenWeather api service https://openweathermap.org/api)
 - users can retrieve weather information from OenWeatherMap by zip code and country code at most one time in 2 hours via rest api and add ot edit Weather model by this data
 - users can retrieve weather information from OenWeatherMap by customer id via rest api
 - users can retrieve weather information from OenWeatherMap by zip code and country code trough celery async task at most one time in 2 hours via rest api and add ot edit Weather model by this data
