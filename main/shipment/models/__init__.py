@@ -1,1 +1,1 @@
-from .shipment import Shipment
+from .models import Shipment

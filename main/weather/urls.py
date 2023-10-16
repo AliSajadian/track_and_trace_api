@@ -1,14 +1,16 @@
 from rest_framework import routers
 from django.urls import path
 
-from .api import current_weather, customer_current_weather, async_current_weather
+from .api import *
 
 router = routers.DefaultRouter()
 
 urlpatterns = [
-    path('api/current-weather/<str:zip_code>/<str:country_code>/', current_weather, name='current-weather'),
-    path('api/customer_current_weather/<int:pk>/', customer_current_weather, name='customer_current_weather'),
-    path('api/async_current_weather/<str:zip_code>/<str:country_code>/', async_current_weather, name='async_current_weather'),
+    path('api/weather/', WeatherAPI.as_view(), name='weathers-list'),
+    path('api/weather/<int:pk>/', WeatherDetailAPI.as_view(), name='weathers-detail'),
+    path('api/weather/<str:country_code>/<str:zip_code>/', current_weather, name='weather-by-country-code-and-zip-code'),
+    path('api/weather/<int:customer_id>/', customer_current_weather, name='weather-by-customer-id'),
+    path('api/weather/async/<str:country_code>/<str:zip_code>/', async_current_weather, name='weather-by-country-code-and-zip-code-async'),
 ]
 
 urlpatterns += router.urls

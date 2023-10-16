@@ -1,3 +1,3 @@
-from .shipment import ShopAPI
-from .shipment import CustomerAPI
-from .shipment import ShipmentAPI
+from .api import ShopAPI
+from .api import CustomerAPI
+from .api import ShipmentAPI

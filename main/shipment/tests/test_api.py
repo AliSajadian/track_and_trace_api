@@ -3,9 +3,9 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from ..models.shipment import *
-from ..serializers.shipment import *
-from ..api.shipment import *
+from ..models.models import *
+from ..serializers.serializers import *
+from ..api.api import *
 
 
 class ShopTest(APITestCase):
@@ -250,48 +250,46 @@ class CustomerTest(APITestCase):
 class ShipmentTest(APITestCase):
     def setUp(self):
         ''' 
-            Initialize data for testing endpoint API
+            Initialize Shipment Test Case Data 
         '''
         self.shipment_list_url = reverse('shipments-list')
 
         self.sender = Shop.objects.create(country='Germany', city='Dusseldorf', zip_code='11124', street='Street 22')
         self.receiver1 = Customer.objects.create(country='France', city='Paris', zip_code='20112', street='Street 5')
         self.receiver2 = Customer.objects.create(country='Spain', city='Madrid', zip_code='30012', street='Street 8')
-        self.shipment1 = Shipment.objects.create(tracking_number='TN12345678', carrier='DHL', sender=self.sender , receiver=self.receiver1 , 
-                                                 article_name='Laptop', article_quantity=1, article_price=900, sku='MT234', status='in-transit')
-        self.shipment2 = Shipment.objects.create(tracking_number='TN12345679', carrier='DPD', sender=self.sender , receiver=self.receiver2 , 
-                                                 article_name='Case', article_quantity=1, article_price=80, sku='MR524', status='delivery')
+        self.carrier1 = Carrier.objects.create(name='DHL')
+        self.carrier2 = Carrier.objects.create(name='DPD')
+        self.article1 = Article.objects.create(name='Laptop', price=900, sku='MT234')
+        self.article2 = Article.objects.create(name='Case', price=80, sku='CA524')
+        self.shipment1 = Shipment.objects.create(tracking_number='TN12345678', carrier=self.carrier1, sender=self.sender, receiver=self.receiver1 , 
+                                                 article=self.article1, article_quantity=1, status='in-transit')
+        self.shipment2 = Shipment.objects.create(tracking_number='TN12345679', carrier=self.carrier2, sender=self.sender, receiver=self.receiver2 , 
+                                                 article=self.article2, article_quantity=1, status='delivery')
         self.create_valid_payload= {
             "tracking_number":"TN12345680", 
-            "carrier":"DHL", 
+            "carrier": self.carrier1.pk, 
             "sender": self.sender.pk,
             "receiver": self.receiver1.pk,
-            "article_name":"Keyboard",
+            "article": self.article1.pk,
             "article_quantity":1,
-            "article_price":50, 
-            "sku":"M3214", 
             "status":"in-transit",
         }
         self.update_valid_payload = {
             'tracking_number':'TN12345679', 
-            'carrier':'DHL', 
+            "carrier": self.carrier2.pk, 
             'sender':self.sender.pk , 
             'receiver':self.receiver2.pk , 
-            'article_name':'Monitor',
-            'article_quantity':1,
-            'article_price':60, 
-            'sku':'LP514', 
-            "status":"in-transit"
+            "article": self.article2.pk,
+            'article_quantity':2,
+            "status":"transit"
         }
         self.invalid_payload = {
             'tracking_number':'', 
             'carrier':'', 
             'sender':'' , 
             'receiver':'' , 
-            'article_name':'',
+            'article':'',
             'article_quantity':0,
-            'article_price':0, 
-            'sku':'', 
             'status':''
         }
 
@@ -328,8 +326,9 @@ class ShipmentTest(APITestCase):
         '''
         response = self.client.get(self.shipment_list_url)
         shipments = Shipment.objects.all()
+
         serializer = ShipmentSerializer(shipments, many=True)
-        self.assertEqual(response.data, serializer.data)
+        self.assertEqual(response.data["data"], serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_shipments_by_tracking_number(self):
@@ -346,8 +345,8 @@ class ShipmentTest(APITestCase):
         '''
             Test Read Shipments By Receiver Id And Carrier Endpoint API
         '''
-        response = self.client.get(reverse('get-by-receiver-id-and-carrier', kwargs={'receiver_id': self.shipment1.receiver.pk, 'carrier': self.shipment1.carrier}))
-        shipments = Shipment.objects.filter(receiver__pk__exact=self.shipment1.receiver.pk, carrier__exact=self.shipment1.carrier)
+        response = self.client.get(reverse('get-by-receiver-id-and-carrier', kwargs={'receiver_id': self.shipment1.receiver.pk, 'carrier': self.shipment1.carrier.pk}))
+        shipments = Shipment.objects.filter(receiver__pk__exact=self.shipment1.receiver.pk, carrier__pk__exact=self.shipment1.carrier.pk)
         serializer = ShipmentSerializer(shipments, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -359,7 +358,7 @@ class ShipmentTest(APITestCase):
         response = self.client.get(reverse('shipments-detail', kwargs={'pk': self.shipment1.pk}))
         shipment = Shipment.objects.get(pk=self.shipment1.pk)
         serializer = ShipmentSerializer(shipment)
-        self.assertEqual(response.data, serializer.data)
+        self.assertEqual(response.data["data"], serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_invalid_single_shipment(self):
@@ -380,6 +379,17 @@ class ShipmentTest(APITestCase):
         )
         self.assertEqual(Response.status_code, status.HTTP_200_OK)
 
+    def test_not_exist_update_shipment(self):
+        '''
+            Test Update Valid Data Shipment Endpoint API
+        '''
+        Response = self.client.put(
+            reverse('shipments-detail', args=[30]),
+            data=json.dumps(self.update_valid_payload),
+            content_type='application/json'
+        )
+        self.assertEqual(Response.status_code, status.HTTP_404_NOT_FOUND)
+
     def test_invalid_update_shipment(self):
         '''
             Test Update Invalid Data Shipment Endpoint API
@@ -398,14 +408,14 @@ class ShipmentTest(APITestCase):
         response = self.client.delete(
             reverse('shipments-detail', kwargs={'pk': self.shipment2.pk})
         ) 
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_invalid_delete_shipment(self):
         '''
             Test Delete Not Exist Shipment Endpoint API
         '''
         response = self.client.delete(
-            reverse('shipments-detail', args=[350])
+            reverse('shipments-detail', args=[30])
         )
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 

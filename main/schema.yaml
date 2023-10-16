@@ -1,0 +1,1171 @@
+openapi: 3.0.3
+info:
+  title: Track and Trace List API
+  version: 1.0.0
+  description: API documentation for article shipment application
+paths:
+  /api/Articles/:
+    get:
+      operationId: Articles_list
+      description: 'Article API functions Class: Include Create, Read, Update, Delete'
+      tags:
+      - Articles
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Article'
+          description: ''
+    post:
+      operationId: Articles_create
+      description: 'Article API functions Class: Include Create, Read, Update, Delete'
+      tags:
+      - Articles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Article'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Article'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: ''
+  /api/Articles/{id}/:
+    get:
+      operationId: Articles_retrieve
+      description: 'Article API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this article.
+        required: true
+      tags:
+      - Articles
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: ''
+    put:
+      operationId: Articles_update
+      description: 'Article API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this article.
+        required: true
+      tags:
+      - Articles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Article'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Article'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: ''
+    patch:
+      operationId: Articles_partial_update
+      description: 'Article API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this article.
+        required: true
+      tags:
+      - Articles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedArticle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedArticle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedArticle'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: ''
+    delete:
+      operationId: Articles_destroy
+      description: 'Article API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this article.
+        required: true
+      tags:
+      - Articles
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/Carriers/:
+    get:
+      operationId: Carriers_list
+      description: 'Carrier API functions Class: Include Create, Read, Update, Delete'
+      tags:
+      - Carriers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Carrier'
+          description: ''
+    post:
+      operationId: Carriers_create
+      description: 'Carrier API functions Class: Include Create, Read, Update, Delete'
+      tags:
+      - Carriers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Carrier'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Carrier'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Carrier'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carrier'
+          description: ''
+  /api/Carriers/{id}/:
+    get:
+      operationId: Carriers_retrieve
+      description: 'Carrier API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this carrier.
+        required: true
+      tags:
+      - Carriers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carrier'
+          description: ''
+    put:
+      operationId: Carriers_update
+      description: 'Carrier API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this carrier.
+        required: true
+      tags:
+      - Carriers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Carrier'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Carrier'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Carrier'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carrier'
+          description: ''
+    patch:
+      operationId: Carriers_partial_update
+      description: 'Carrier API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this carrier.
+        required: true
+      tags:
+      - Carriers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCarrier'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCarrier'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCarrier'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carrier'
+          description: ''
+    delete:
+      operationId: Carriers_destroy
+      description: 'Carrier API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this carrier.
+        required: true
+      tags:
+      - Carriers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/customers/:
+    get:
+      operationId: customers_list
+      description: 'Customer API functions Class: Include Create, Read, Update, Delete'
+      tags:
+      - customers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+          description: ''
+    post:
+      operationId: customers_create
+      description: 'Customer API functions Class: Include Create, Read, Update, Delete'
+      tags:
+      - customers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Customer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Customer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+          description: ''
+  /api/customers/{id}/:
+    get:
+      operationId: customers_retrieve
+      description: 'Customer API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this customer.
+        required: true
+      tags:
+      - customers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+          description: ''
+    put:
+      operationId: customers_update
+      description: 'Customer API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this customer.
+        required: true
+      tags:
+      - customers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Customer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Customer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+          description: ''
+    patch:
+      operationId: customers_partial_update
+      description: 'Customer API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this customer.
+        required: true
+      tags:
+      - customers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomer'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+          description: ''
+    delete:
+      operationId: customers_destroy
+      description: 'Customer API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this customer.
+        required: true
+      tags:
+      - customers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/shipments/:
+    get:
+      operationId: shipments_list
+      description: 'Shipment API functions Class: Include Create, Read, Update, Delete'
+      tags:
+      - shipments
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shipment'
+          description: ''
+    post:
+      operationId: shipments_create
+      description: 'Shipment API functions Class: Include Create, Read, Update, Delete'
+      tags:
+      - shipments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Shipment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Shipment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Shipment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+          description: ''
+  /api/shipments/{id}/:
+    get:
+      operationId: shipments_retrieve
+      description: 'Shipment API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shipment.
+        required: true
+      tags:
+      - shipments
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+          description: ''
+    put:
+      operationId: shipments_update
+      description: 'Shipment API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shipment.
+        required: true
+      tags:
+      - shipments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Shipment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Shipment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Shipment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+          description: ''
+    patch:
+      operationId: shipments_partial_update
+      description: 'Shipment API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shipment.
+        required: true
+      tags:
+      - shipments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedShipment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedShipment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedShipment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+          description: ''
+    delete:
+      operationId: shipments_destroy
+      description: 'Shipment API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shipment.
+        required: true
+      tags:
+      - shipments
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/shipments/{id}/getByCarrier/:
+    get:
+      operationId: shipments_getByCarrier_retrieve_2
+      description: Read Shipments By Customer Id and Carrier
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shipment.
+        required: true
+      tags:
+      - shipments
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+          description: ''
+  /api/shipments/{id}/getByTrackingNumber/:
+    get:
+      operationId: shipments_getByTrackingNumber_retrieve_2
+      description: Read Shipments By Track Number
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shipment.
+        required: true
+      tags:
+      - shipments
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+          description: ''
+  /api/shipments/getByCarrier/{receiver_id}/{carrier}/:
+    get:
+      operationId: shipments_getByCarrier_retrieve
+      description: Read Shipments By Customer Id and Carrier
+      parameters:
+      - in: path
+        name: carrier
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: receiver_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shipments
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+          description: ''
+  /api/shipments/getByTrackingNumber/{tracking_number}/:
+    get:
+      operationId: shipments_getByTrackingNumber_retrieve
+      description: Read Shipments By Track Number
+      parameters:
+      - in: path
+        name: tracking_number
+        schema:
+          type: string
+        required: true
+      tags:
+      - shipments
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+          description: ''
+  /api/shops/:
+    get:
+      operationId: shops_list
+      description: 'Shop API functions Class: Include Create, Read, Update, Delete'
+      tags:
+      - shops
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shop'
+          description: ''
+    post:
+      operationId: shops_create
+      description: 'Shop API functions Class: Include Create, Read, Update, Delete'
+      tags:
+      - shops
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Shop'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Shop'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Shop'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shop'
+          description: ''
+  /api/shops/{id}/:
+    get:
+      operationId: shops_retrieve
+      description: 'Shop API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shop.
+        required: true
+      tags:
+      - shops
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shop'
+          description: ''
+    put:
+      operationId: shops_update
+      description: 'Shop API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shop.
+        required: true
+      tags:
+      - shops
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Shop'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Shop'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Shop'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shop'
+          description: ''
+    patch:
+      operationId: shops_partial_update
+      description: 'Shop API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shop.
+        required: true
+      tags:
+      - shops
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedShop'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedShop'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedShop'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shop'
+          description: ''
+    delete:
+      operationId: shops_destroy
+      description: 'Shop API functions Class: Include Create, Read, Update, Delete'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shop.
+        required: true
+      tags:
+      - shops
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Article:
+      type: object
+      description: 'Article Serializers Class:'
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        price:
+          type: number
+          format: double
+          nullable: true
+        sku:
+          type: string
+          maxLength: 8
+      required:
+      - id
+      - name
+      - sku
+    Carrier:
+      type: object
+      description: 'Carrier Serializers Class:'
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+      required:
+      - id
+      - name
+    Customer:
+      type: object
+      description: 'Customer Serializers Class:'
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        country:
+          type: string
+          maxLength: 50
+        city:
+          type: string
+          maxLength: 50
+        zip_code:
+          type: string
+          maxLength: 5
+        street:
+          type: string
+          maxLength: 50
+      required:
+      - city
+      - country
+      - id
+      - street
+      - zip_code
+    PatchedArticle:
+      type: object
+      description: 'Article Serializers Class:'
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        price:
+          type: number
+          format: double
+          nullable: true
+        sku:
+          type: string
+          maxLength: 8
+    PatchedCarrier:
+      type: object
+      description: 'Carrier Serializers Class:'
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+    PatchedCustomer:
+      type: object
+      description: 'Customer Serializers Class:'
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        country:
+          type: string
+          maxLength: 50
+        city:
+          type: string
+          maxLength: 50
+        zip_code:
+          type: string
+          maxLength: 5
+        street:
+          type: string
+          maxLength: 50
+    PatchedShipment:
+      type: object
+      description: 'Shipment Serializers Class:'
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        tracking_number:
+          type: string
+          maxLength: 10
+        carrier:
+          type: integer
+        carrier_name:
+          type: string
+          readOnly: true
+        sender:
+          type: integer
+        sender_address:
+          type: string
+          readOnly: true
+        receiver:
+          type: integer
+        receiver_address:
+          type: string
+          readOnly: true
+        article:
+          type: integer
+        article_name:
+          type: string
+          readOnly: true
+        article_quantity:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        article_price:
+          type: string
+          readOnly: true
+        sku:
+          type: string
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+    PatchedShop:
+      type: object
+      description: 'Shop Serializers Class:'
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        country:
+          type: string
+          maxLength: 50
+        city:
+          type: string
+          maxLength: 50
+        zip_code:
+          type: string
+          maxLength: 5
+        street:
+          type: string
+          maxLength: 50
+    Shipment:
+      type: object
+      description: 'Shipment Serializers Class:'
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        tracking_number:
+          type: string
+          maxLength: 10
+        carrier:
+          type: integer
+        carrier_name:
+          type: string
+          readOnly: true
+        sender:
+          type: integer
+        sender_address:
+          type: string
+          readOnly: true
+        receiver:
+          type: integer
+        receiver_address:
+          type: string
+          readOnly: true
+        article:
+          type: integer
+        article_name:
+          type: string
+          readOnly: true
+        article_quantity:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        article_price:
+          type: string
+          readOnly: true
+        sku:
+          type: string
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+      required:
+      - article
+      - article_name
+      - article_price
+      - article_quantity
+      - carrier
+      - carrier_name
+      - id
+      - receiver
+      - receiver_address
+      - sender
+      - sender_address
+      - sku
+      - tracking_number
+    Shop:
+      type: object
+      description: 'Shop Serializers Class:'
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        country:
+          type: string
+          maxLength: 50
+        city:
+          type: string
+          maxLength: 50
+        zip_code:
+          type: string
+          maxLength: 5
+        street:
+          type: string
+          maxLength: 50
+      required:
+      - city
+      - country
+      - id
+      - street
+      - zip_code
+    StatusEnum:
+      enum:
+      - in-transit
+      - inbound-scan
+      - delivery
+      - transit
+      - scanned
+      type: string
+      description: |-
+        * `in-transit` - In Transit
+        * `inbound-scan` - Inbound Scan
+        * `delivery` - Delivery
+        * `transit` - Transit
+        * `scanned` - Scanned
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

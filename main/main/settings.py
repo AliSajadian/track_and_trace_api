@@ -50,13 +50,6 @@ INSTALLED_APPS = [
     'weather',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [],
-    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
-    'DATETIME_FORMAT': '%m/%d/%Y %H:%M:%S',
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-}
-
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
@@ -67,15 +60,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
-SPECTACULAR_SETTINGS = {
-    'TITLE': 'Track and Trace List API',
-    'DESCRIPTION': 'API documentation for article shipment application',
-    'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
-    'COMPONENT_SPLIT_REQUEST': True
-    # OTHER SETTINGS
-}
 
 ROOT_URLCONF = "main.urls"
 
@@ -153,6 +137,22 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [],
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'DATETIME_FORMAT': '%m/%d/%Y %H:%M:%S',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Track and Trace List API',
+    'DESCRIPTION': 'API documentation for article shipment application',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # 'COMPONENT_SPLIT_REQUEST': True
+    # OTHER SETTINGS
+}
 
 OPEN_WEATHER_API_DATA_URL = "https://api.openweathermap.org/data/2.5/weather"
 OPEN_WEATHER_API_GEO_URL = "http://api.openweathermap.org/geo/1.0/zip"
